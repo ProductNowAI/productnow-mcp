@@ -10,6 +10,11 @@ This repository is a public metadata and documentation package for marketplace
 submissions. It does not contain the ProductNow application source code or the
 MCP server implementation.
 
+[![MCP Registry](https://img.shields.io/badge/MCP_Registry-Listed-success)](https://registry.modelcontextprotocol.io/?q=ProductNow)
+[![Smithery](https://img.shields.io/badge/Smithery-Listed-success)](https://smithery.ai/servers/productnow)
+[![PulseMCP](https://img.shields.io/badge/PulseMCP-Listed-success)](https://www.pulsemcp.com/servers/productnow)
+[![Glama](https://img.shields.io/badge/Glama-Listed-success)](https://glama.ai/mcp/connectors/ai.productnow/productnow)
+
 ## Server
 
 | Field | Value |
