@@ -1,0 +1,47 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/draft/mcp-server-metadata.json",
+  "assets": {
+    "icon": "assets/productnow-icon.png",
+    "logo": "assets/productnow-logo.png"
+  },
+  "authentication": {
+    "authorizationServerMetadataUrl": "https://api.productnow-prod.com/.well-known/oauth-authorization-server",
+    "protectedResourceMetadataUrl": "https://api.productnow-prod.com/.well-known/oauth-protected-resource",
+    "provider": "Auth0",
+    "requiredScopes": ["mcp:use"],
+    "type": "oauth2"
+  },
+  "capabilities": {
+    "prompts": false,
+    "resources": false,
+    "tools": true
+  },
+  "categories": [
+    "product-management",
+    "prototyping",
+    "feedback",
+    "documents",
+    "collaboration"
+  ],
+  "description": "Turn prototype feedback into product decisions that your whole team can trace.",
+  "longDescription": "ProductNow's hosted MCP server lets AI clients create, read, review, and update ProductNow documents, folders, templates, comments, feedback, and status metadata through a secure OAuth-authenticated connection.",
+  "maintainers": [
+    {
+      "email": "support@productnow.ai"
+    }
+  ],
+  "name": "ai.productnow/productnow",
+  "title": "ProductNow",
+  "transport": {
+    "type": "streamable-http",
+    "url": "https://api.productnow-prod.com/mcp"
+  },
+  "urls": {
+    "app": "https://app.productnow.ai",
+    "mcpEndpoint": "https://api.productnow-prod.com/mcp",
+    "privacyPolicy": "https://app.productnow.ai/public/doc/roaq-bchj-dnsm",
+    "termsOfService": "https://app.productnow.ai/public/doc/zqwd-nnqa-uflp",
+    "website": "https://productnow.ai"
+  },
+  "version": "1.0.0"
+}

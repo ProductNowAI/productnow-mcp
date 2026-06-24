@@ -1,0 +1,338 @@
+{
+  "$schema": "https://productnow.ai/schemas/mcp-tools-catalog.json",
+  "generatedFrom": "ProductNow MCP tools/list public metadata",
+  "server": "ai.productnow/productnow",
+  "tools": [
+    {
+      "category": "documents",
+      "description": "Change the status of the document associated with a document version. Valid status values: ON_TRACK, AT_RISK, OFF_TRACK, COMPLETED. Use list_document_versions or search_documents to find the document version ID first.",
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "name": "change_document_version_status",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Change Document Version Status"
+    },
+    {
+      "category": "documents",
+      "description": "Create a new ProductNow document and immediately begin AI generation. Use prompt for the short generation brief. Use context for any additional background, such as the full text of a plan file or notes from a prior conversation. If a template is requested, call search_templates first to get the templateVersionId.",
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "name": "create_document",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Create Document"
+    },
+    {
+      "category": "comments",
+      "description": "Leave a comment on a document that is in review status. The comment is posted as the user's personal agent. Only works on review-status document versions. Use list_document_versions to find the correct documentVersionId first.",
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "name": "create_document_comment",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Create Document Comment"
+    },
+    {
+      "category": "folders",
+      "description": "Create a new folder in ProductNow. Optionally nest it inside a parent folder. Returns the new folder's ID and name.",
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "name": "create_folder",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Create Folder"
+    },
+    {
+      "category": "templates",
+      "description": "Create a brand new template in ProductNow. Returns the new template's ID, name, and metadata.",
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "name": "create_template",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Create Template"
+    },
+    {
+      "category": "templates",
+      "description": "Add a note to a template version in ProductNow. Notes are used to track observations, feedback, or context about a template. Returns the new note's ID on success.",
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "name": "create_template_note",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Create Template Note"
+    },
+    {
+      "category": "templates",
+      "description": "Add a new section to a template version in ProductNow. Each section has a title, instructions for the AI when generating that section, an optional display order, and an optional content type. Returns the new section's ID on success.",
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "name": "create_template_section",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Create Template Section"
+    },
+    {
+      "category": "templates",
+      "description": "Permanently delete a template. This action cannot be undone. Requires MANAGE permission on the template.",
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "name": "delete_template",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Delete Template"
+    },
+    {
+      "category": "templates",
+      "description": "Delete a section from a template version. This action cannot be undone. Requires EDIT permission on the parent template.",
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "name": "delete_template_section",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Delete Template Section"
+    },
+    {
+      "category": "templates",
+      "description": "Edit a template's name. Omit name to leave it unchanged.",
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "name": "edit_template",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Edit Template"
+    },
+    {
+      "category": "templates",
+      "description": "Edit an existing section within a template version in ProductNow. All fields are optional; only the fields provided will be updated. At least one field must be supplied. Returns the section's ID on success.",
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "name": "edit_template_section",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Edit Template Section"
+    },
+    {
+      "category": "templates",
+      "description": "Replace the content of a template version by providing a new .templatepn JSON. First use get_template_content to retrieve the current content, modify it, then pass the updated JSON here.",
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "name": "edit_template_version",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Edit Template Version"
+    },
+    {
+      "category": "templates",
+      "description": "Edit a template version's metadata, including description, creation guidelines, category, default length, and default effort. Include only the fields to change.",
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "name": "edit_template_version_metadata",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Edit Template Version Metadata"
+    },
+    {
+      "category": "documents",
+      "description": "Retrieve a document attachment as a base64-encoded file with its MIME type and file name. Use this to read image or file attachments referenced in a document. Requires VIEW access to the document.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "name": "get_attachment",
+      "openWorldHint": true,
+      "readOnlyHint": true,
+      "title": "Get Attachment"
+    },
+    {
+      "category": "documents",
+      "description": "Retrieve the full content of a ProductNow document by its ID, optionally targeting a specific version via documentVersionId. Returns the document name, version ID and status, folder location, and all section content.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "name": "get_document",
+      "openWorldHint": true,
+      "readOnlyHint": true,
+      "title": "Get Document"
+    },
+    {
+      "category": "documents",
+      "description": "Fetch the current chat messages and edit mode for a document's AI draft chat. Returns the conversation history and whether the agent is in ask_before_edit or edit_automatically mode.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "name": "get_document_chat",
+      "openWorldHint": true,
+      "readOnlyHint": true,
+      "title": "Get Document Chat"
+    },
+    {
+      "category": "feedback",
+      "description": "Retrieve all feedback submitted on a specific document version, returned as CSV. Columns include ID, Title, Description, Feedback, Feedback Type, and Created On.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "name": "get_document_feedback",
+      "openWorldHint": true,
+      "readOnlyHint": true,
+      "title": "Get Document Feedback"
+    },
+    {
+      "category": "comments",
+      "description": "Fetch all comment threads on a specific document version. Returns thread IDs, statuses, quoted text, and creation timestamps.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "name": "get_document_threads",
+      "openWorldHint": true,
+      "readOnlyHint": true,
+      "title": "Get Document Threads"
+    },
+    {
+      "category": "documents",
+      "description": "Retrieve the current status of the document associated with a document version. Returns the status value, dates, and active flag.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "name": "get_document_version_status",
+      "openWorldHint": true,
+      "readOnlyHint": true,
+      "title": "Get Document Version Status"
+    },
+    {
+      "category": "templates",
+      "description": "Fetch the current chat messages and edit mode for a template's AI chat. Returns the conversation history and whether the agent is in ask_before_edit or edit_automatically mode.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "name": "get_template_chat",
+      "openWorldHint": true,
+      "readOnlyHint": true,
+      "title": "Get Template Chat"
+    },
+    {
+      "category": "templates",
+      "description": "Get the full content of a template's latest version in .templatepn format. Returns a JSON string containing the template structure with all sections, instructions, and metadata.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "name": "get_template_content",
+      "openWorldHint": true,
+      "readOnlyHint": true,
+      "title": "Get Template Content"
+    },
+    {
+      "category": "comments",
+      "description": "Fetch all messages in a specific comment thread. Returns message IDs, content, author names, timestamps, and whether each message was posted by an AI agent.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "name": "get_thread_messages",
+      "openWorldHint": true,
+      "readOnlyHint": true,
+      "title": "Get Thread Messages"
+    },
+    {
+      "category": "documents",
+      "description": "List all versions of a document, optionally filtered by status. Returns version IDs, version numbers, statuses, and creation timestamps.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "name": "list_document_versions",
+      "openWorldHint": true,
+      "readOnlyHint": true,
+      "title": "List Document Versions"
+    },
+    {
+      "category": "folders",
+      "description": "List folders accessible to the current user, optionally filtered to a specific parent folder. Omit parentFolderId to list root-level folders.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "name": "list_folders",
+      "openWorldHint": true,
+      "readOnlyHint": true,
+      "title": "List Folders"
+    },
+    {
+      "category": "templates",
+      "description": "List all templates the user has access to. Optionally filter by access level or category. Returns template IDs, names, descriptions, categories, and whether the user can edit each template.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "name": "list_templates",
+      "openWorldHint": true,
+      "readOnlyHint": true,
+      "title": "List Templates"
+    },
+    {
+      "category": "documents",
+      "description": "Post a message to a document's AI draft chat to request edits or ask questions about the document. The message is sent to the draft agent, which can modify the document's content.",
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "name": "post_document_chat_message",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Post Document Chat Message"
+    },
+    {
+      "category": "templates",
+      "description": "Post a message to a template's AI chat to request edits or ask questions about the template. The message is sent to the template agent, which can modify template sections and instructions.",
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "name": "post_template_chat_message",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Post Template Chat Message"
+    },
+    {
+      "category": "comments",
+      "description": "Add an emoji reaction to a specific comment thread message. Requires COMMENT permission on the document. Use get_thread_messages to find message IDs.",
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "name": "react_to_message",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "React To Message"
+    },
+    {
+      "category": "comments",
+      "description": "Reply to an existing comment thread on a document as the user's personal agent. Requires COMMENT permission on the document.",
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "name": "reply_to_thread",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Reply To Thread"
+    },
+    {
+      "category": "documents",
+      "description": "Search for ProductNow documents by name. Returns a list of matching documents with their IDs and folder paths. Use this to find a document before calling get_document.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "name": "search_documents",
+      "openWorldHint": true,
+      "readOnlyHint": true,
+      "title": "Search Documents"
+    },
+    {
+      "category": "templates",
+      "description": "Search for ProductNow templates by name. Call this before create_document when a template is specified by name. Returns matches with templateVersionId values.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "name": "search_templates",
+      "openWorldHint": true,
+      "readOnlyHint": true,
+      "title": "Search Templates"
+    },
+    {
+      "category": "documents",
+      "description": "Switch the edit mode of a document's AI draft chat. ask_before_edit means the agent asks before making changes; edit_automatically lets the agent apply edits directly.",
+      "destructiveHint": true,
+      "idempotentHint": true,
+      "name": "switch_document_chat_edit_mode",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Switch Document Chat Edit Mode"
+    },
+    {
+      "category": "templates",
+      "description": "Switch the edit mode of a template's AI chat. ask_before_edit means the agent asks before making changes; edit_automatically lets the agent apply edits directly.",
+      "destructiveHint": true,
+      "idempotentHint": true,
+      "name": "switch_template_edit_mode",
+      "openWorldHint": true,
+      "readOnlyHint": false,
+      "title": "Switch Template Edit Mode"
+    }
+  ],
+  "version": "1.0.0"
+}

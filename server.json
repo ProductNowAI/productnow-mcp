@@ -1,0 +1,14 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "description": "Turn prototype feedback into product decisions that your whole team can trace.",
+  "name": "ai.productnow/productnow",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.productnow-prod.com/mcp"
+    }
+  ],
+  "title": "ProductNow",
+  "version": "1.0.0",
+  "websiteUrl": "https://app.productnow.ai"
+}
