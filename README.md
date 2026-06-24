@@ -1,5 +1,7 @@
 # ProductNow MCP Server
 
+[![Status](https://status.productnow.ai/badge/v2?variant=outline)](https://status.productnow.ai/)
+
 ProductNow's hosted Model Context Protocol (MCP) server lets AI clients create,
 read, review, and update ProductNow documents, folders, templates, comments,
 feedback, and status metadata through a secure OAuth-authenticated connection.
