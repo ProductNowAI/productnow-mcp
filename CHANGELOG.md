@@ -5,8 +5,6 @@
 - Refreshed the public tool catalog from backend MCP source: 38 tools, updated
   annotations, help-document tools, prototype/media tools, and output-schema
   availability for every tool.
-- Regenerated ChatGPT app submission metadata with current tool annotations and
-  review test cases.
 - Updated docs to reflect closed-world ProductNow annotations and open-world
   prototype/media flows.
 
