@@ -3,8 +3,9 @@
 [![Status](https://status.productnow.ai/badge/v2?variant=outline)](https://status.productnow.ai/)
 
 ProductNow's hosted Model Context Protocol (MCP) server lets AI clients create,
-read, review, and update ProductNow documents, folders, templates, comments,
-feedback, and status metadata through a secure OAuth-authenticated connection.
+read, review, and update ProductNow documents, help docs, folders, templates,
+comments, feedback, media, prototype imports, and status metadata through a
+secure OAuth-authenticated connection.
 
 This repository is a public metadata and documentation package for marketplace
 submissions. It does not contain the ProductNow application source code or the
@@ -37,16 +38,18 @@ The MCP server exposes ProductNow workspace operations to compatible AI clients:
 - Search, fetch, and create ProductNow documents.
 - Read document versions, chat history, comment threads, feedback CSVs, and
   attached files.
+- Search, list, and create ProductNow help documents.
 - Ask ProductNow document and template agents to make edits.
 - Create folders, templates, template sections, and template notes.
+- Import prototypes and allocate media upload slots for embeddable content.
 - Comment, reply, react, and update document status.
 
 See [docs/TOOLS.md](docs/TOOLS.md) and [tools.json](tools.json) for the full
 public tool catalog.
 
-> **Note:** The tool catalog in this repository may be out of date. For the
-> current list of tools, connect an MCP client to the server and use the
-> standard `tools/list` request.
+> **Note:** The tool catalog in this repository was refreshed from the backend
+> MCP source on 2026-07-17. The live server's `tools/list` response remains the
+> runtime source of truth for connected clients.
 
 ## Quick Start
 
@@ -95,7 +98,8 @@ marketplaces:
 
 - [server.json](server.json): official MCP Registry metadata.
 - [mcp.json](mcp.json): general listing metadata for GitHub-based scrapers.
-- [tools.json](tools.json): public tool catalog with safety annotations.
+- [tools.json](tools.json): public tool catalog with safety annotations and
+  output-schema availability.
 - [.well-known/glama.json](.well-known/glama.json): reference copy of Glama
   ownership metadata. The authoritative copy is served from the ProductNow API
   domain.

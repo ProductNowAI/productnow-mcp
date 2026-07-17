@@ -64,11 +64,14 @@ Several tools can create, edit, or delete ProductNow resources. Clients should
 ask the user for confirmation before executing write or destructive tools,
 especially:
 
+- `change_document_version_status`
+- `create_help_document`
 - `delete_template`
 - `delete_template_section`
 - `edit_template_version`
+- `import_prototype`
 - `post_document_chat_message`
 - `post_template_chat_message`
 - `switch_document_chat_edit_mode`
 - `switch_template_edit_mode`
-
+- `upload_media`

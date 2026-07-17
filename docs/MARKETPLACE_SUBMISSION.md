@@ -25,7 +25,8 @@ code.
 | `README.md` | Human-readable listing page. |
 | `server.json` | Official MCP Registry metadata. |
 | `mcp.json` | General public metadata for GitHub-based scrapers. |
-| `tools.json` | Public catalog of tools and safety annotations. |
+| `tools.json` | Public catalog of tools, safety annotations, and output-schema availability. |
+| `chatgpt-app-submission.json` | ChatGPT app submission import metadata and review test cases. |
 | `.well-known/glama.json` | Reference copy of Glama ownership metadata. |
 | `assets/productnow-icon.png` | Square marketplace icon. |
 | `assets/productnow-logo.png` | Full ProductNow logo. |
@@ -73,7 +74,11 @@ API-domain hosted file is the authoritative verification document.
 
 - Confirm `server.json` endpoint and version match production.
 - Confirm `mcp.json` endpoint, URLs, maintainer email, and assets are current.
-- Confirm `tools.json` matches the live `tools/list` response.
+- Confirm `tools.json` matches the live `tools/list` response, including tool
+  count, annotations, and output-schema availability.
+- Confirm each live tool declares `outputSchema` and returns structured content.
+- Confirm `chatgpt-app-submission.json` covers every live tool and has exactly
+  five positive and three negative review test cases.
 - Confirm `https://api.productnow-prod.com/.well-known/oauth-protected-resource`
   returns the expected protected-resource metadata.
 - Confirm `https://api.productnow-prod.com/.well-known/glama.json` returns the

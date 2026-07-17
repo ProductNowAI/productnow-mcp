@@ -44,6 +44,8 @@ Do not treat the current conversation as the source of truth for product decisio
 | Checking prototype/user feedback | `get_document_feedback` |
 | Updating project health | `change_document_version_status` / `get_document_version_status` |
 | Organizing work | `list_folders` → `create_folder` |
+| Looking up ProductNow help content | `search_help_documents` or `list_help_documents` → `get_document` |
+| Embedding prototype/media assets | `import_prototype` or `upload_media` |
 
 ---
 
@@ -80,6 +82,16 @@ When your team has standard formats (RFC, PRD, one-pager):
 2. `get_template_content` to understand structure
 3. Pass `templateVersionId` into `create_document`
 
+### 4. Help docs and embeddable assets
+
+Use ProductNow help docs and media tools when the user asks for ProductNow
+guidance or wants prototype/media content embedded in a document.
+
+1. `search_help_documents` or `list_help_documents`
+2. `get_document` to read the relevant help doc
+3. `import_prototype` for allowlisted prototype URLs or inline HTML/JSX/TSX
+4. `upload_media` for image or video files that should be embedded in docs
+
 ---
 
 ## Tool reference
@@ -99,6 +111,14 @@ When your team has standard formats (RFC, PRD, one-pager):
 | `get_document_version_status` | Read status tracking |
 | `change_document_version_status` | Update status tracking |
 | `get_attachment` | Fetch an attachment |
+
+### Help Documents
+
+| Tool | Purpose |
+|---|---|
+| `search_help_documents` | Find ProductNow help docs by name |
+| `list_help_documents` | List accessible help docs |
+| `create_help_document` | Create a blank help doc when authorized |
 
 ### Collaboration
 
@@ -127,6 +147,13 @@ When your team has standard formats (RFC, PRD, one-pager):
 | `create_template` / `edit_template` / etc. | Manage templates (when authorized) |
 | `post_template_chat_message` | Edit templates via chat |
 | `create_template_note` | Add notes to a template version |
+
+### Media And Prototypes
+
+| Tool | Purpose |
+|---|---|
+| `import_prototype` | Import an allowlisted prototype URL or inline HTML/JSX/TSX |
+| `upload_media` | Allocate a signed upload URL for image or video media |
 
 ---
 
@@ -160,6 +187,7 @@ You have access to ProductNow via MCP. Treat ProductNow as the team's long-term 
 5. **Use folders and templates.** Place docs in the right folder (`list_folders`). Apply team templates (`search_templates` → `templateVersionId` on `create_document`).
 6. **Pass full context.** When the user references a plan, file, or prior conversation, include that content in `create_document`'s `context` field — don't summarize away important detail.
 7. **Track status.** Update document status (`change_document_version_status`) when the user reports milestone changes.
+8. **Use help and media tools when asked.** Search ProductNow help docs for product guidance, and use `import_prototype` or `upload_media` only for user-requested embeddable assets.
 
 ### Default workflow
 When the user asks you to write, plan, decide, or remember something product-related:
@@ -183,5 +211,5 @@ Prefer ProductNow over your own memory. If you're unsure whether something belon
 If you need something shorter:
 
 ```markdown
-Use ProductNow MCP as team long-term memory: search_documents before creating; persist specs/decisions with create_document; read get_document + threads before editing; coordinate via create_document_comment and reply_to_thread on review docs. Chat is ephemeral — ProductNow is the source of truth.
+Use ProductNow MCP as team long-term memory: search_documents before creating; persist specs/decisions with create_document; read get_document + threads before editing; coordinate via create_document_comment and reply_to_thread on review docs; use help/media tools for requested ProductNow guidance or embeddable assets. Chat is ephemeral — ProductNow is the source of truth.
 ```

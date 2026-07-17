@@ -21,10 +21,12 @@
     "prototyping",
     "feedback",
     "documents",
-    "collaboration"
+    "collaboration",
+    "help-docs",
+    "media"
   ],
   "description": "Turn prototype feedback into product decisions that your whole team can trace.",
-  "longDescription": "ProductNow's hosted MCP server lets AI clients create, read, review, and update ProductNow documents, folders, templates, comments, feedback, and status metadata through a secure OAuth-authenticated connection.",
+  "longDescription": "ProductNow's hosted MCP server lets AI clients create, read, review, and update ProductNow documents, help docs, folders, templates, comments, feedback, media, prototype imports, and status metadata through a secure OAuth-authenticated connection.",
   "maintainers": [
     {
       "email": "support@productnow.ai"
