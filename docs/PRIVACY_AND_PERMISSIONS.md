@@ -7,13 +7,17 @@ does not grant broad workspace access on its own.
 
 Depending on the user's ProductNow permissions, tools may access:
 
+- Knowledge warehouse search results: document metadata, query-focused excerpts,
+  evidence source labels, and freshness timestamps.
 - Document names, folder paths, versions, statuses, and section content.
-- Document attachments requested through `get_attachment`.
 - Document feedback exported as CSV.
 - Document comment threads and thread messages.
-- Help document metadata and content visible to the user.
-- Template metadata, template sections, and `.templatepn` template content.
-- Folder names and hierarchy visible to the user.
+- Help document metadata and content visible to the user (ProductNow help via
+  `search_knowledge_warehouse` with `product_help` scope; help-document list/create
+  tools are ProductNow-org-only).
+- Folder names, hierarchy, and documents visible through folder listing/search.
+- Knowledge pack curation inputs (document IDs, notes, highlight quotes) when the
+  knowledge pack feature flag is enabled.
 - Prototype import results, media storage object IDs, generated embed HTML, and
   signed upload URLs returned by media/prototype tools.
 
@@ -21,14 +25,15 @@ Depending on the user's ProductNow permissions, tools may access:
 
 With sufficient user permissions, write tools can:
 
-- Create documents, folders, templates, template sections, and template notes.
+- Create documents and folders.
 - Create blank ProductNow help documents for authorized ProductNow users.
-- Ask ProductNow document and template agents to edit content.
-- Rename or replace templates and template versions.
-- Delete templates or template sections.
-- Add comments, replies, and reactions.
-- Change document status tracking metadata.
+- Ask ProductNow document agents to edit content via draft chat.
+- Move draft document versions into review.
+- Add comments and thread replies.
 - Import prototype assets and allocate ProductNow media upload slots.
+
+`curate_knowledge_pack` builds a shareable pack URL from documents the caller
+can already view; it does not grant additional document access.
 
 ## Client Guidance
 
@@ -37,12 +42,12 @@ MCP clients should:
 - Show the authenticated ProductNow account when possible.
 - Ask for confirmation before write or destructive tools.
 - Avoid sending unrelated local files as `context` to `create_document`.
-- Avoid storing returned attachment data unless the user explicitly requests it.
 - Use `import_prototype` only for user-requested URLs or inline prototype source
   content.
 - Treat `upload_media` upload URLs as short-lived write credentials and do not
   share them beyond the current user workflow.
-- Treat document and template content as private customer workspace data.
+- Treat document content and warehouse excerpts as private customer workspace
+  data.
 
 ## ProductNow Guidance
 

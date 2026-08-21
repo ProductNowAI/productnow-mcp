@@ -52,26 +52,22 @@ Scope: mcp:use
 After authentication, call a read-only tool first:
 
 ```text
-list_folders
+search_knowledge_warehouse
 ```
 
-That verifies the client can authenticate and that ProductNow can resolve the
-user's workspace context.
+with a simple query such as `"what is this workspace about?"`, or call
+`list_folders` to verify workspace access. That confirms the client can
+authenticate and that ProductNow can resolve the user's organization.
 
 ## Write Tool Safety
 
-Several tools can create, edit, or delete ProductNow resources. Clients should
-ask the user for confirmation before executing write or destructive tools,
-especially:
+Several tools can create or mutate ProductNow resources. Clients should ask the
+user for confirmation before executing write or destructive tools, especially:
 
-- `change_document_version_status`
+- `create_document`
 - `create_help_document`
-- `delete_template`
-- `delete_template_section`
-- `edit_template_version`
 - `import_prototype`
+- `move_document_to_review`
 - `post_document_chat_message`
-- `post_template_chat_message`
 - `switch_document_chat_edit_mode`
-- `switch_template_edit_mode`
 - `upload_media`

@@ -17,16 +17,16 @@
     "tools": true
   },
   "categories": [
-    "product-management",
-    "prototyping",
-    "feedback",
+    "knowledge-warehouse",
+    "knowledge-layer",
     "documents",
     "collaboration",
+    "ai-agents",
     "help-docs",
     "media"
   ],
-  "description": "Turn prototype feedback into product decisions that your whole team can trace.",
-  "longDescription": "ProductNow's hosted MCP server lets AI clients create, read, review, and update ProductNow documents, help docs, folders, templates, comments, feedback, media, prototype imports, and status metadata through a secure OAuth-authenticated connection.",
+  "description": "Your team's knowledge warehouse — the cross-vendor storage layer that joins your tools into one living knowledge layer, available wherever you, your team, and all your agents work.",
+  "longDescription": "ProductNow is the cross-vendor storage layer that joins your tools into one living knowledge layer AI can actually use. It connects to the tools where knowledge already lives — code, customer calls, CRM data, support tickets, project history — and automatically transforms them into structured, queryable knowledge that becomes the living picture of your organization. Through this hosted MCP server, people and AI agents get grounded answers and can search, curate, and collaborate on that knowledge layer from the clients they already use.",
   "maintainers": [
     {
       "email": "support@productnow.ai"
