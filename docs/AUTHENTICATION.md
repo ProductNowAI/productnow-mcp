@@ -51,9 +51,12 @@ workspace and resource authorization checks.
 For example:
 
 - A user can only read documents they can view in ProductNow.
-- Template writes require the user's template permissions.
-- Comment replies and reactions require comment access to the document.
-- Folder and document creation happens inside the user's organization context.
+- Knowledge warehouse search only returns evidence from documents the user can
+  access.
+- Comment replies require comment access to the document.
+- Folder and document creation happens inside the user's organization.
+- Some tools are hidden unless the user belongs to ProductNow's organization or
+  has a required feature flag enabled.
 
 ## Token Handling
 

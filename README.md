@@ -2,10 +2,13 @@
 
 [![Status](https://status.productnow.ai/badge/v2?variant=outline)](https://status.productnow.ai/)
 
-ProductNow's hosted Model Context Protocol (MCP) server lets AI clients create,
-read, review, and update ProductNow documents, help docs, folders, templates,
-comments, feedback, media, prototype imports, and status metadata through a
-secure OAuth-authenticated connection.
+**Your team's knowledge warehouse.**
+
+ProductNow is the cross-vendor storage layer that joins your tools into one
+living knowledge layer that AI can actually use. This hosted Model Context
+Protocol (MCP) server makes that knowledge layer available wherever you and your
+team already work — through MCP clients that authenticate with OAuth and operate
+as the signed-in ProductNow user.
 
 This repository is a public metadata and documentation package for marketplace
 submissions. It does not contain the ProductNow application source code or the
@@ -32,24 +35,29 @@ MCP server implementation.
 
 ## What It Does
 
-ProductNow turns prototype feedback into product decisions that teams can trace.
+ProductNow connects the tools where knowledge already lives and turns that
+signal into structured, queryable knowledge — the living picture of your
+organization. Through MCP, people and AI agents can search that knowledge
+warehouse, curate shareable knowledge packs, and collaborate on documents from
+the clients they already use.
+
 The MCP server exposes ProductNow workspace operations to compatible AI clients:
 
-- Search, fetch, and create ProductNow documents.
-- Read document versions, chat history, comment threads, feedback CSVs, and
-  attached files.
-- Search, list, and create ProductNow help documents.
-- Ask ProductNow document and template agents to make edits.
-- Create folders, templates, template sections, and template notes.
-- Import prototypes and allocate media upload slots for embeddable content.
-- Comment, reply, react, and update document status.
+- Search the knowledge warehouse for grounded, citeable evidence excerpts.
+- Narrow searches to folders, or search ProductNow product help specifically.
+- Fetch, create, and iterate on ProductNow documents via draft chat.
+- Move drafts into review and participate in comment threads.
+- Browse and create folders; import prototypes and allocate media upload slots.
+- Curate shareable knowledge packs when the feature is enabled for the org.
+- Manage ProductNow help documents when the caller is a ProductNow org member.
 
 See [docs/TOOLS.md](docs/TOOLS.md) and [tools.json](tools.json) for the full
-public tool catalog.
+public tool catalog (21 tools).
 
 > **Note:** The tool catalog in this repository was refreshed from the backend
-> MCP source on 2026-07-17. The live server's `tools/list` response remains the
-> runtime source of truth for connected clients.
+> MCP source on 2026-08-20. The live server's `tools/list` response remains the
+> runtime source of truth for connected clients. Some tools are gated by
+> organization membership or feature flags and may not appear for every user.
 
 ## Quick Start
 
@@ -109,9 +117,9 @@ marketplaces:
 ## Security And Permissions
 
 All tool calls run as the authenticated ProductNow user. ProductNow applies its
-normal organization, workspace, document, template, and comment permissions to
-MCP requests. Clients should treat write tools as consequential actions and ask
-for user confirmation when appropriate.
+normal organization, workspace, document, and comment permissions to MCP
+requests. Clients should treat write tools as consequential actions and ask for
+user confirmation when appropriate.
 
 See [docs/PRIVACY_AND_PERMISSIONS.md](docs/PRIVACY_AND_PERMISSIONS.md).
 

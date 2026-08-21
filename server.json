@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "description": "Turn prototype feedback into product decisions that your whole team can trace.",
+  "description": "Your team's knowledge warehouse — the cross-vendor storage layer that joins your tools into one living knowledge layer, available wherever you, your team, and all your agents work.",
   "name": "ai.productnow/productnow",
   "remotes": [
     {

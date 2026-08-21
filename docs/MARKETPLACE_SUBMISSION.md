@@ -10,7 +10,8 @@ code.
 | --- | --- |
 | Name | `ai.productnow/productnow` |
 | Title | ProductNow |
-| Description | Turn prototype feedback into product decisions that your whole team can trace. |
+| Tagline | Your team's knowledge warehouse |
+| Description | The cross-vendor storage layer that joins your tools into one living knowledge layer, available wherever you, your team, and all your agents work. |
 | Endpoint | `https://api.productnow-prod.com/mcp` |
 | Transport | `streamable-http` |
 | Authentication | OAuth 2.0 via Auth0 |
@@ -32,6 +33,7 @@ code.
 | `docs/AUTHENTICATION.md` | OAuth and discovery details. |
 | `docs/CLIENT_CONFIGURATION.md` | Example client setup. |
 | `docs/PRIVACY_AND_PERMISSIONS.md` | Permission and data-handling guidance. |
+| `docs/TOOLS.md` | Human-readable tool catalog. |
 
 ## Official MCP Registry
 
@@ -64,10 +66,10 @@ API-domain hosted file is the authoritative verification document.
 ## Suggested GitHub Repository Settings
 
 - Visibility: public.
-- Repository description: `ProductNow MCP server metadata and setup docs`.
+- Repository description: `ProductNow MCP server metadata — your team's knowledge warehouse, available through MCP`.
 - Website: `https://app.productnow.ai`.
-- Topics: `mcp`, `model-context-protocol`, `product-management`,
-  `prototyping`, `feedback`, `documents`, `oauth`.
+- Topics: `mcp`, `model-context-protocol`, `knowledge-warehouse`,
+  `knowledge-layer`, `ai-agents`, `documents`, `oauth`.
 
 ## Pre-Submission Checklist
 

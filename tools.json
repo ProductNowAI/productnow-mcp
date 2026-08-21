@@ -1,25 +1,13 @@
 {
   "$schema": "https://productnow.ai/schemas/mcp-tools-catalog.json",
   "generatedFrom": "ProductNow backend MCP source and tools/list public metadata",
-  "lastReviewed": "2026-07-17",
+  "lastReviewed": "2026-08-20",
   "server": "ai.productnow/productnow",
-  "toolCount": 38,
+  "toolCount": 21,
   "tools": [
     {
       "category": "documents",
-      "description": "Change the status of the document associated with a document version. Valid status values: ON_TRACK, AT_RISK, OFF_TRACK, COMPLETED. Use list_document_versions or search_documents to find the document version ID first.",
-      "destructiveHint": true,
-      "idempotentHint": false,
-      "openWorldHint": false,
-      "readOnlyHint": false,
-      "hasOutputSchema": true,
-      "name": "change_document_version_status",
-      "returnsStructuredContent": true,
-      "title": "Change Document Version Status"
-    },
-    {
-      "category": "documents",
-      "description": "Create a new ProductNow document and immediately begin AI generation. Use prompt for the short generation brief. Use context for any additional background, such as the full text of a plan file or notes from a prior conversation. If the user references a file by name, read that file first and pass its contents as context. If the user specifies a template by name, call search_templates first to get the templateVersionId, then pass it here.",
+      "description": "Create a new ProductNow document and immediately begin AI generation. Use `prompt` to specify the full document outline, including numbered sections, their titles, and their content. Use `context` for any additional supporting background — e.g., code snippets, meeting notes, etc. If the user references a file by name (e.g., 'the plan in swirling-sleeping-eclipse.md'), read that file first and pass its contents as `context`. Pass `templateVersionId` when the caller already has a template version to use.",
       "destructiveHint": false,
       "idempotentHint": false,
       "openWorldHint": false,
@@ -63,131 +51,25 @@
       "hasOutputSchema": true,
       "name": "create_help_document",
       "returnsStructuredContent": true,
-      "title": "Create Help Document"
+      "title": "Create Help Document",
+      "visibility": "productnow_org_only"
     },
     {
-      "category": "templates",
-      "description": "Create a brand new template in ProductNow. Returns the new template's ID, name, and metadata.",
-      "destructiveHint": false,
-      "idempotentHint": false,
-      "openWorldHint": false,
-      "readOnlyHint": false,
-      "hasOutputSchema": true,
-      "name": "create_template",
-      "returnsStructuredContent": true,
-      "title": "Create Template"
-    },
-    {
-      "category": "templates",
-      "description": "Add a note to a template version in ProductNow. Notes are used to track observations, feedback, or context about a template. Returns the new note's ID on success.",
-      "destructiveHint": false,
-      "idempotentHint": false,
-      "openWorldHint": false,
-      "readOnlyHint": false,
-      "hasOutputSchema": true,
-      "name": "create_template_note",
-      "returnsStructuredContent": true,
-      "title": "Create Template Note"
-    },
-    {
-      "category": "templates",
-      "description": "Add a new section to a template version in ProductNow. Each section has a title, instructions for the AI when generating that section, an optional display order, and an optional content type. Returns the new section's ID on success.",
-      "destructiveHint": false,
-      "idempotentHint": false,
-      "openWorldHint": false,
-      "readOnlyHint": false,
-      "hasOutputSchema": true,
-      "name": "create_template_section",
-      "returnsStructuredContent": true,
-      "title": "Create Template Section"
-    },
-    {
-      "category": "templates",
-      "description": "Permanently delete a template. This action cannot be undone. Requires MANAGE permission on the template.",
-      "destructiveHint": true,
-      "idempotentHint": true,
-      "openWorldHint": false,
-      "readOnlyHint": false,
-      "hasOutputSchema": true,
-      "name": "delete_template",
-      "returnsStructuredContent": true,
-      "title": "Delete Template"
-    },
-    {
-      "category": "templates",
-      "description": "Delete a section from a template version. This action cannot be undone. Requires EDIT permission on the parent template.",
-      "destructiveHint": true,
-      "idempotentHint": true,
-      "openWorldHint": false,
-      "readOnlyHint": false,
-      "hasOutputSchema": true,
-      "name": "delete_template_section",
-      "returnsStructuredContent": true,
-      "title": "Delete Template Section"
-    },
-    {
-      "category": "templates",
-      "description": "Edit a template's name. Omit name to leave it unchanged.",
-      "destructiveHint": true,
-      "idempotentHint": false,
-      "openWorldHint": false,
-      "readOnlyHint": false,
-      "hasOutputSchema": true,
-      "name": "edit_template",
-      "returnsStructuredContent": true,
-      "title": "Edit Template"
-    },
-    {
-      "category": "templates",
-      "description": "Edit an existing section within a template version in ProductNow. All fields are optional; only the fields provided will be updated. At least one field must be supplied. Returns the section's ID on success. Note that if edit_template_version was just used, section IDs will have changed.",
-      "destructiveHint": true,
-      "idempotentHint": false,
-      "openWorldHint": false,
-      "readOnlyHint": false,
-      "hasOutputSchema": true,
-      "name": "edit_template_section",
-      "returnsStructuredContent": true,
-      "title": "Edit Template Section"
-    },
-    {
-      "category": "templates",
-      "description": "Replace the content of a template version by providing a new .templatepn JSON. First use get_template_content to retrieve the current content, modify it, then pass the updated JSON here. The templateId in the JSON must match the templateId argument.",
-      "destructiveHint": true,
-      "idempotentHint": false,
-      "openWorldHint": false,
-      "readOnlyHint": false,
-      "hasOutputSchema": true,
-      "name": "edit_template_version",
-      "returnsStructuredContent": true,
-      "title": "Edit Template Version"
-    },
-    {
-      "category": "templates",
-      "description": "Edit a template version's metadata, including description, creation guidelines, category, default length, and default effort. Include only the fields to change.",
-      "destructiveHint": true,
-      "idempotentHint": false,
-      "openWorldHint": false,
-      "readOnlyHint": false,
-      "hasOutputSchema": true,
-      "name": "edit_template_version_metadata",
-      "returnsStructuredContent": true,
-      "title": "Edit Template Version Metadata"
-    },
-    {
-      "category": "documents",
-      "description": "Retrieve a document attachment as a base64-encoded file with its MIME type and file name. Use this to read image or file attachments referenced in a document. Requires VIEW access to the document the attachment belongs to.",
+      "category": "knowledge",
+      "description": "Curate a shareable Knowledge pack page from a title, optional context and overview, ordered document items (one entry per document, with optional why-here notes and multiple highlight quotes each with a why-chosen reason), and optional further-reading documents. Filters out documents the caller cannot view, then returns a Knowledge pack URL. Write a short context blurb. Write summary as 3–5 short newline-separated bullet lines (prefix each with '- '), not a long paragraph. For each item note, write 2–4 sentences explaining what the reader will learn and when this doc matters — not a short caption. Prefer exact quotes as highlight text. For each highlight, include a one-sentence reason explaining why that quote was chosen. List each document once with a highlights array — never repeat the same documentId as separate items. Related must be distinct documents not already in items. Include 2–5 related docs outside the core pack when useful. Requires the knowledge_pack_application feature flag.",
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false,
       "readOnlyHint": true,
       "hasOutputSchema": true,
-      "name": "get_attachment",
+      "name": "curate_knowledge_pack",
       "returnsStructuredContent": true,
-      "title": "Get Attachment"
+      "title": "Curate Knowledge Pack",
+      "visibility": "feature_flagged"
     },
     {
       "category": "documents",
-      "description": "Retrieve the full content of a ProductNow document by its ID, optionally targeting a specific version via documentVersionId. Returns the document name, version ID and status, folder location, and all section content. Use search_documents first to find the document ID.",
+      "description": "Retrieve the full content of a ProductNow document by its ID, optionally targeting a specific version via `documentVersionId`. Returns the document name, version ID and status, folder location, and all section content. Use `search_knowledge_warehouse` first to find the document ID.",
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false,
@@ -199,7 +81,7 @@
     },
     {
       "category": "documents",
-      "description": "Fetch the current chat messages and edit mode for a document's AI draft chat. Returns the conversation history and whether the agent is in ask_before_edit or edit_automatically mode.",
+      "description": "Fetch the current chat messages and edit mode for a document's AI draft chat. Returns the conversation history and whether the agent is in 'ask_before_edit' or 'edit_automatically' mode.",
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false,
@@ -211,7 +93,7 @@
     },
     {
       "category": "feedback",
-      "description": "Retrieve all feedback submitted on the latest review version of a document, returned as CSV. Columns include ID, Title, Description, Feedback, Feedback Type, and Created On. Use search_documents to find the document ID.",
+      "description": "Retrieve all feedback submitted on the latest review version of a document, returned as CSV. Columns: ID, Title, Description, Feedback, Feedback Type, Created On. Use search_knowledge_warehouse to find the document ID.",
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false,
@@ -234,42 +116,6 @@
       "title": "Get Document Threads"
     },
     {
-      "category": "documents",
-      "description": "Retrieve the current status of the document associated with a document version. Returns the status value (ON_TRACK, AT_RISK, OFF_TRACK, COMPLETED), dates, and active flag. Use list_document_versions or search_documents to find the document version ID first.",
-      "destructiveHint": false,
-      "idempotentHint": true,
-      "openWorldHint": false,
-      "readOnlyHint": true,
-      "hasOutputSchema": true,
-      "name": "get_document_version_status",
-      "returnsStructuredContent": true,
-      "title": "Get Document Version Status"
-    },
-    {
-      "category": "templates",
-      "description": "Fetch the current chat messages and edit mode for a template's AI chat. Returns the conversation history and whether the agent is in ask_before_edit or edit_automatically mode.",
-      "destructiveHint": false,
-      "idempotentHint": true,
-      "openWorldHint": false,
-      "readOnlyHint": true,
-      "hasOutputSchema": true,
-      "name": "get_template_chat",
-      "returnsStructuredContent": true,
-      "title": "Get Template Chat"
-    },
-    {
-      "category": "templates",
-      "description": "Get the full content of a template's latest version in .templatepn format. Returns a JSON string containing the template structure with all sections, instructions, and metadata. Use this to inspect a template before editing it.",
-      "destructiveHint": false,
-      "idempotentHint": true,
-      "openWorldHint": false,
-      "readOnlyHint": true,
-      "hasOutputSchema": true,
-      "name": "get_template_content",
-      "returnsStructuredContent": true,
-      "title": "Get Template Content"
-    },
-    {
       "category": "comments",
       "description": "Fetch all messages in a specific comment thread. Returns message IDs, content, author names, timestamps, and whether each message was posted by an AI agent. Use get_document_threads to find thread IDs first.",
       "destructiveHint": false,
@@ -283,7 +129,7 @@
     },
     {
       "category": "media",
-      "description": "Import a prototype from a published URL or from inline HTML, JSX, or TSX file content. URL imports must use HTTPS and an allowlisted prototyping host. Returns the hosted S3 URL and an iframe HTML snippet that can be embedded in a prototype element.",
+      "description": "Import a prototype from a published URL or from inline HTML/JSX/TSX file content. When sourceType is \"url\", provide a published prototype URL from an allowlisted platform (.lovable.app, .replit.app, .repl.co, .figma.site, .vusercontent.net, .vercel.app, .bolt.host, .created.app, .canva.site, .hostingersite.com). When sourceType is \"html\", \"jsx\", or \"tsx\", provide the raw file content as the source. Returns the hosted S3 URL and an iframe HTML snippet. Use this to convert a prototype into a resolved HTML file — the returned URL can be embedded in a prototype element.",
       "destructiveHint": false,
       "idempotentHint": false,
       "openWorldHint": true,
@@ -295,7 +141,7 @@
     },
     {
       "category": "documents",
-      "description": "List all versions of a document, optionally filtered by status (draft, review, or published). Returns version IDs, version numbers, statuses, and creation timestamps. Useful for locating a specific review or published version before fetching threads or commenting.",
+      "description": "List all versions of a document, optionally filtered by status ('draft', 'review', or 'published'). Returns version IDs, version numbers, statuses, and creation timestamps. Useful for locating a specific review or published version before fetching threads or commenting.",
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false,
@@ -307,7 +153,7 @@
     },
     {
       "category": "folders",
-      "description": "List folders accessible to the current user, optionally filtered to a specific parent folder. Omit parentFolderId to list root-level folders. Use this to navigate the folder hierarchy before creating documents or folders.",
+      "description": "List folders and documents accessible to the current user, optionally filtered to a specific parent folder. Omit parentFolderId to list root-level contents. Use this to navigate the folder hierarchy and enumerate documents before creating documents or folders.",
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false,
@@ -327,23 +173,24 @@
       "hasOutputSchema": true,
       "name": "list_help_documents",
       "returnsStructuredContent": true,
-      "title": "List Help Documents"
-    },
-    {
-      "category": "templates",
-      "description": "List all templates the user has access to. Optionally filter by access level (edit vs view) or by category. Returns template IDs, names, descriptions, categories, and whether the user can edit each template.",
-      "destructiveHint": false,
-      "idempotentHint": true,
-      "openWorldHint": false,
-      "readOnlyHint": true,
-      "hasOutputSchema": true,
-      "name": "list_templates",
-      "returnsStructuredContent": true,
-      "title": "List Templates"
+      "title": "List Help Documents",
+      "visibility": "productnow_org_only"
     },
     {
       "category": "documents",
-      "description": "Post a message to a document's AI draft chat to request edits or ask questions about the document. The message is sent to the draft agent, which can modify the document's content. Use this to request changes to a document via natural language.",
+      "description": "Move a ProductNow document's current version into REVIEW status. A fresh DRAFT version is created automatically to receive subsequent edits. Only DRAFT versions are moved; any other status (REVIEW, PUBLISHED, SNAPSHOT, ...) is a no-op — the response's `moved` flag and `previousStatus` report what happened. Targets the document's current version unless `documentVersionId` is provided.",
+      "destructiveHint": true,
+      "idempotentHint": true,
+      "openWorldHint": false,
+      "readOnlyHint": false,
+      "hasOutputSchema": true,
+      "name": "move_document_to_review",
+      "returnsStructuredContent": true,
+      "title": "Move Document To Review"
+    },
+    {
+      "category": "documents",
+      "description": "Post a message to a document's AI draft chat to request edits or ask questions about the document. The message is sent to the draft agent which can modify the document's content, and works best when you target a specific document section to update. Use this to request changes to a document via natural language. Use the 'switch_document_chat_edit_mode' tool to set the edit mode of the chat to 'edit_automatically' to avoid requiring approval for your edits in the ProductNow UI.",
       "destructiveHint": false,
       "idempotentHint": false,
       "openWorldHint": false,
@@ -352,30 +199,6 @@
       "name": "post_document_chat_message",
       "returnsStructuredContent": true,
       "title": "Post Document Chat Message"
-    },
-    {
-      "category": "templates",
-      "description": "Post a message to a template's AI chat to request edits or ask questions about the template. The message is sent to the template agent, which can modify the template's sections and instructions. Use this to request changes to a template via natural language.",
-      "destructiveHint": false,
-      "idempotentHint": false,
-      "openWorldHint": false,
-      "readOnlyHint": false,
-      "hasOutputSchema": true,
-      "name": "post_template_chat_message",
-      "returnsStructuredContent": true,
-      "title": "Post Template Chat Message"
-    },
-    {
-      "category": "comments",
-      "description": "Add an emoji reaction to a specific comment thread message. Requires COMMENT permission on the document. Use get_thread_messages to find message IDs.",
-      "destructiveHint": false,
-      "idempotentHint": false,
-      "openWorldHint": false,
-      "readOnlyHint": false,
-      "hasOutputSchema": true,
-      "name": "react_to_message",
-      "returnsStructuredContent": true,
-      "title": "React To Message"
     },
     {
       "category": "comments",
@@ -390,44 +213,32 @@
       "title": "Reply To Thread"
     },
     {
-      "category": "documents",
-      "description": "Search for ProductNow documents by name. Returns a list of matching documents with their IDs and folder paths. Use this to find a document before calling get_document to read its content.",
+      "category": "folders",
+      "description": "Find folders by name using fuzzy matching, ordered by relevance. Use this to resolve a folder name (e.g. \"Salesforce\") to its folderId before calling search_knowledge_warehouse with `destinationFolderId` to restrict a search to that folder and its subfolders.",
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false,
       "readOnlyHint": true,
       "hasOutputSchema": true,
-      "name": "search_documents",
+      "name": "search_folders",
       "returnsStructuredContent": true,
-      "title": "Search Documents"
+      "title": "Search Folders"
     },
     {
-      "category": "help",
-      "description": "Search for ProductNow help documents by name. Returns a list of matching help documents with their IDs and folder paths. Use this to find a help document before calling get_document to read its content.",
+      "category": "knowledge",
+      "description": "Search ProductNow knowledge for evidence that answers a factual question. Search workspace documents by default, or set searchScope to product_help when the user asks how to use ProductNow or ProductNow features; that scope exclusively searches ProductNow help documentation. To narrow a search to part of the workspace (e.g. \"the Salesforce folder\"), call `search_folders` first to resolve the folder name to an id, then pass it as `destinationFolderId` here; destinationFolderId is ignored when searchScope is product_help. Returns every document that clears a relevance threshold — many for a broad question, few for a precise one — each with several query-focused excerpts drawn from different parts of the document. Every returned source has already passed a relevance check, so treat them as relevant and judge them on their excerpts rather than second-guessing whether the search matched well. Source createdAt is the document creation time. evidenceSource describes how the excerpts were obtained (semantic_index, lexical_snippet, document_fallback, or unavailable), and evidenceUpdatedAt, when present, is the best available timestamp for when that evidence was last updated. Missing evidenceUpdatedAt means freshness is unknown. Use recency as one signal when evidence conflicts, not as automatic proof of authority. A source with no excerpts and evidenceSource \"unavailable\" has no evidence at all — read it directly if you need it; failedSources explains the ones that failed outright, but a source capped by the read limit is unavailable without an entry there. Answer directly from these excerpts where possible, cite the documents you rely on, read a source document with `get_document` only when its excerpts are genuinely insufficient, and state uncertainty when evidence is weak or conflicting.",
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false,
       "readOnlyHint": true,
       "hasOutputSchema": true,
-      "name": "search_help_documents",
+      "name": "search_knowledge_warehouse",
       "returnsStructuredContent": true,
-      "title": "Search Help Documents"
-    },
-    {
-      "category": "templates",
-      "description": "Search for ProductNow templates by name. Call this before create_document when the user specifies a template by name. Returns matches with templateVersionId values; pick the best match and pass its templateVersionId to create_document.",
-      "destructiveHint": false,
-      "idempotentHint": true,
-      "openWorldHint": false,
-      "readOnlyHint": true,
-      "hasOutputSchema": true,
-      "name": "search_templates",
-      "returnsStructuredContent": true,
-      "title": "Search Templates"
+      "title": "Search Knowledge Warehouse"
     },
     {
       "category": "documents",
-      "description": "Switch the edit mode of a document's AI draft chat. ask_before_edit means the agent asks for confirmation before making changes; edit_automatically means the agent applies edits directly without asking. Set to edit_automatically for faster iterative edits.",
+      "description": "Switch the edit mode of a document's AI draft chat. 'ask_before_edit' means the agent will ask for confirmation before making changes. 'edit_automatically' means the agent will apply edits directly without asking. Set to 'edit_automatically' to avoid requiring approval for your edits in the ProductNow UI.",
       "destructiveHint": true,
       "idempotentHint": true,
       "openWorldHint": false,
@@ -438,20 +249,8 @@
       "title": "Switch Document Chat Edit Mode"
     },
     {
-      "category": "templates",
-      "description": "Switch the edit mode of a template's AI chat. ask_before_edit means the agent asks for confirmation before making changes; edit_automatically means the agent applies edits directly without asking. Set to edit_automatically for faster iterative edits.",
-      "destructiveHint": true,
-      "idempotentHint": true,
-      "openWorldHint": false,
-      "readOnlyHint": false,
-      "hasOutputSchema": true,
-      "name": "switch_template_edit_mode",
-      "returnsStructuredContent": true,
-      "title": "Switch Template Edit Mode"
-    },
-    {
       "category": "media",
-      "description": "Upload a media file (image or video) to ProductNow storage. Returns a signed backend uploadUrl valid for 5 minutes, plus a url and htmlText that can be embedded in documents immediately. Allowed MIME types include PNG, JPEG, GIF, WebP, MP4, WebM, and QuickTime.",
+      "description": "Upload a media file (image or video) to ProductNow storage. Returns a signed backend `uploadUrl` valid for 5 minutes — upload the file via: `curl -X POST -F 'file=@<localPath>;type=<mimeType>' '<uploadUrl>'`. Also returns a `url` and `htmlText` you can embed in documents immediately.",
       "destructiveHint": false,
       "idempotentHint": false,
       "openWorldHint": true,
