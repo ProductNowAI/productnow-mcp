@@ -1,7 +1,7 @@
 {
   "$schema": "https://productnow.ai/schemas/mcp-tools-catalog.json",
   "generatedFrom": "ProductNow backend MCP source and tools/list public metadata",
-  "lastReviewed": "2026-08-20",
+  "lastReviewed": "2026-09-01",
   "server": "ai.productnow/productnow",
   "toolCount": 21,
   "tools": [
@@ -226,7 +226,7 @@
     },
     {
       "category": "knowledge",
-      "description": "Search ProductNow knowledge for evidence that answers a factual question. Search workspace documents by default, or set searchScope to product_help when the user asks how to use ProductNow or ProductNow features; that scope exclusively searches ProductNow help documentation. To narrow a search to part of the workspace (e.g. \"the Salesforce folder\"), call `search_folders` first to resolve the folder name to an id, then pass it as `destinationFolderId` here; destinationFolderId is ignored when searchScope is product_help. Returns every document that clears a relevance threshold — many for a broad question, few for a precise one — each with several query-focused excerpts drawn from different parts of the document. Every returned source has already passed a relevance check, so treat them as relevant and judge them on their excerpts rather than second-guessing whether the search matched well. Source createdAt is the document creation time. evidenceSource describes how the excerpts were obtained (semantic_index, lexical_snippet, document_fallback, or unavailable), and evidenceUpdatedAt, when present, is the best available timestamp for when that evidence was last updated. Missing evidenceUpdatedAt means freshness is unknown. Use recency as one signal when evidence conflicts, not as automatic proof of authority. A source with no excerpts and evidenceSource \"unavailable\" has no evidence at all — read it directly if you need it; failedSources explains the ones that failed outright, but a source capped by the read limit is unavailable without an entry there. Answer directly from these excerpts where possible, cite the documents you rely on, read a source document with `get_document` only when its excerpts are genuinely insufficient, and state uncertainty when evidence is weak or conflicting.",
+      "description": "Search ProductNow documents and return answer-ready excerpts for factual questions. Pass query whenever the user names a topic, including when filters are also present. If the user asks only which documents match creator/date filters and names no topic, omit query to list documents by latest content edit; listing sources contain metadata but no excerpts. creatorNames matches document creators, not editors or contributors; its entries combine with OR, while creator and date filters combine with AND. Search workspace documents by default; use product_help only for questions about how ProductNow works. For a folder-scoped workspace search, resolve its id with search_folders and pass destinationFolderId; it is ignored for product_help. Topic-search results are relevance-filtered; all result sets are capped. Answer from the excerpts when possible, cite the documents you use, read a source document with `get_document` only when its excerpts are genuinely insufficient, and state uncertainty when evidence is weak or conflicting.",
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false,

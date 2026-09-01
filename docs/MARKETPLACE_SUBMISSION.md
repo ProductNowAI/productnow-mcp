@@ -24,6 +24,7 @@ code.
 | File | Purpose |
 | --- | --- |
 | `README.md` | Human-readable listing page. |
+| `MCP_AGENT_INSTRUCTIONS.md` | Copy-paste agent guidance and system prompt for MCP clients. |
 | `server.json` | Official MCP Registry metadata. |
 | `mcp.json` | General public metadata for GitHub-based scrapers. |
 | `tools.json` | Public catalog of tools, safety annotations, and output-schema availability. |

@@ -1,6 +1,19 @@
 # Changelog
 
-## Unreleased
+This repository tracks public metadata for the **live** hosted ProductNow MCP
+server. Entries are dated snapshots of when the catalog and docs were brought
+in line with production — not software releases.
+
+## 2026-09-01
+
+- Refreshed `search_knowledge_warehouse` from backend MCP source: new
+  `creatorNames`, `updatedAfter`, and `updatedBefore` filters, an optional
+  `query` that switches the tool into a metadata listing mode ordered by latest
+  content edit, and a rewritten tool description. Documented the filter
+  semantics and result shape in [docs/TOOLS.md](docs/TOOLS.md) and the agent
+  instructions.
+
+## 2026-08-20
 
 - Refreshed the public tool catalog from backend MCP source: 21 tools aligned to
   the current hosted server (`search_knowledge_warehouse`, `search_folders`,
@@ -13,7 +26,7 @@
   warehouse / living knowledge layer available through MCP (preferring
   "knowledge" over "context" in user-facing copy).
 
-## 1.0.0
+## 2026-06-25
 
 - Initial public metadata package for the hosted ProductNow MCP server.
 - Includes official registry metadata, general marketplace metadata, tool

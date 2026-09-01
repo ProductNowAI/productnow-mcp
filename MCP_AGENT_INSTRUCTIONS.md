@@ -38,6 +38,8 @@ Do not treat the current conversation as the source of truth for product decisio
 |---|---|
 | Answering a factual question about the org | `search_knowledge_warehouse` → cite excerpts; `get_document` only if excerpts are insufficient |
 | Narrowing a search to a named folder | `search_folders` → pass `folderId` as `destinationFolderId` to `search_knowledge_warehouse` |
+| Narrowing a search to an author or a date range | `search_knowledge_warehouse` with `creatorNames` and/or `updatedAfter` / `updatedBefore` |
+| Listing which docs match filters, with no topic named | `search_knowledge_warehouse` with filters only and no `query` |
 | Asking how ProductNow itself works | `search_knowledge_warehouse` with `searchScope: "product_help"` |
 | Starting a new spec, RFC, PRD, or decision doc | `search_knowledge_warehouse` → if none exists, `create_document` |
 | Resuming work from a prior session | `search_knowledge_warehouse` → `get_document` |
@@ -58,10 +60,11 @@ Do not treat the current conversation as the source of truth for product decisio
 
 ### 1. Grounded answers (knowledge warehouse)
 
-1. **Search first** — `search_knowledge_warehouse` with the user's question.
-2. **Scope when needed** — `search_folders` to resolve a folder name, then pass `destinationFolderId`.
-3. **Answer from excerpts** — treat returned sources as relevant; cite documents you rely on.
-4. **Escalate carefully** — call `get_document` only when excerpts are genuinely insufficient.
+1. **Search first** — `search_knowledge_warehouse` with the user's question. Always pass `query` when the user names a topic, even alongside filters.
+2. **Scope when needed** — `search_folders` to resolve a folder name, then pass `destinationFolderId`. Add `creatorNames` for author filters (`"me"` means the calling user) and `updatedAfter` / `updatedBefore` (`YYYY-MM-DD`, UTC) for date ranges. Compute relative ranges like "the past 2 weeks" yourself.
+3. **List when there's no topic** — omit `query` only when the user asks purely which documents match creator or date filters. Listing results are ordered by latest content edit and carry no excerpts.
+4. **Answer from excerpts** — treat returned sources as relevant; cite documents you rely on.
+5. **Escalate carefully** — call `get_document` only when excerpts are genuinely insufficient.
 
 ### 2. Long-term memory (documents)
 
@@ -100,7 +103,7 @@ ProductNow is how you stay aligned with humans and other agents on your team.
 
 | Tool | Purpose |
 |---|---|
-| `search_knowledge_warehouse` | Find evidence excerpts across workspace knowledge (or product help) |
+| `search_knowledge_warehouse` | Find evidence excerpts across workspace knowledge (or product help), filtered by folder, creator, or edit date |
 | `curate_knowledge_pack` | Curate a shareable knowledge pack URL (feature-flagged) |
 | `search_folders` | Resolve a folder name to a `folderId` for scoped search |
 
@@ -157,6 +160,7 @@ For product-help questions from any org, use `search_knowledge_warehouse` with
 - **Don't** keep specs or decisions only in chat — they'll be lost next session.
 - **Don't** create duplicate docs — search the knowledge warehouse first.
 - **Don't** call `get_document` for every search hit — answer from excerpts when they're enough.
+- **Don't** drop `query` just because filters are present — without a topic you get a metadata listing and no excerpts.
 - **Don't** edit without reading threads on review docs — you may contradict teammate feedback.
 - **Don't** comment on draft versions — `create_document_comment` requires review status.
 - **Don't** guess document IDs — always search or list versions first.
@@ -181,7 +185,7 @@ You have access to ProductNow via MCP. Treat ProductNow as the team's living kno
    - `get_document_threads` → `get_thread_messages` to read open feedback
    - `get_document_feedback` for prototype/user input
    - Use `create_document_comment` or `reply_to_thread` to participate in discussions
-6. **Use folders.** Place docs in the right folder (`search_folders` / `list_folders`). Scope warehouse searches with `destinationFolderId` when the user names a folder.
+6. **Use folders and filters.** Place docs in the right folder (`search_folders` / `list_folders`). Scope warehouse searches with `destinationFolderId` when the user names a folder, `creatorNames` when they name an author, and `updatedAfter` / `updatedBefore` when they name a time range.
 7. **Pass full supporting material.** When the user references a plan, file, or prior conversation, include that content in `create_document`'s `context` field — don't summarize away important detail.
 8. **Move drafts to review.** Use `move_document_to_review` when the user is ready for teammate feedback.
 9. **Use media tools when asked.** Use `import_prototype` or `upload_media` only for user-requested embeddable assets.
