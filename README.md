@@ -44,7 +44,8 @@ the clients they already use.
 The MCP server exposes ProductNow workspace operations to compatible AI clients:
 
 - Search the knowledge warehouse for grounded, citeable evidence excerpts.
-- Narrow searches to folders, or search ProductNow product help specifically.
+- Narrow searches by folder, document creator, or last-edited date range, or
+  search ProductNow product help specifically.
 - Fetch, create, and iterate on ProductNow documents via draft chat.
 - Move drafts into review and participate in comment threads.
 - Browse and create folders; import prototypes and allocate media upload slots.
@@ -55,7 +56,7 @@ See [docs/TOOLS.md](docs/TOOLS.md) and [tools.json](tools.json) for the full
 public tool catalog (21 tools).
 
 > **Note:** The tool catalog in this repository was refreshed from the backend
-> MCP source on 2026-08-20. The live server's `tools/list` response remains the
+> MCP source on 2026-09-01. The live server's `tools/list` response remains the
 > runtime source of truth for connected clients. Some tools are gated by
 > organization membership or feature flags and may not appear for every user.
 

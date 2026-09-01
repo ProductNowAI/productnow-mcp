@@ -24,6 +24,7 @@ code.
 | File | Purpose |
 | --- | --- |
 | `README.md` | Human-readable listing page. |
+| `MCP_AGENT_INSTRUCTIONS.md` | Copy-paste agent guidance and system prompt for MCP clients. |
 | `server.json` | Official MCP Registry metadata. |
 | `mcp.json` | General public metadata for GitHub-based scrapers. |
 | `tools.json` | Public catalog of tools, safety annotations, and output-schema availability. |
@@ -77,7 +78,8 @@ API-domain hosted file is the authoritative verification document.
 - Confirm `mcp.json` endpoint, URLs, maintainer email, and assets are current.
 - Confirm `tools.json` matches the live `tools/list` response, including tool
   count, annotations, and output-schema availability.
-- Confirm each live tool declares `outputSchema` and returns structured content.
+- Confirm each live tool declares `outputSchema` and returns structured content,
+  except `move_document_to_review`, which returns text content only.
 - Confirm `https://api.productnow-prod.com/.well-known/oauth-protected-resource`
   returns the expected protected-resource metadata.
 - Confirm `https://api.productnow-prod.com/.well-known/glama.json` returns the
