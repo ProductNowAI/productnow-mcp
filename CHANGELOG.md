@@ -12,11 +12,6 @@ in line with production — not software releases.
   content edit, and a rewritten tool description. Documented the filter
   semantics and result shape in [docs/TOOLS.md](docs/TOOLS.md) and the agent
   instructions.
-- Corrected the `curate_knowledge_pack` display title to "Curate Context Pack"
-  to match the annotation the server advertises.
-- Corrected the catalog entry for `move_document_to_review`: it is the one tool
-  that declares no output schema and returns text content without
-  `structuredContent`.
 
 ## 2026-08-20
 

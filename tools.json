@@ -64,7 +64,7 @@
       "hasOutputSchema": true,
       "name": "curate_knowledge_pack",
       "returnsStructuredContent": true,
-      "title": "Curate Context Pack",
+      "title": "Curate Knowledge Pack",
       "visibility": "feature_flagged"
     },
     {
@@ -183,9 +183,9 @@
       "idempotentHint": true,
       "openWorldHint": false,
       "readOnlyHint": false,
-      "hasOutputSchema": false,
+      "hasOutputSchema": true,
       "name": "move_document_to_review",
-      "returnsStructuredContent": false,
+      "returnsStructuredContent": true,
       "title": "Move Document To Review"
     },
     {

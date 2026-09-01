@@ -4,11 +4,9 @@ The ProductNow MCP server exposes 21 tools. The machine-readable catalog is in
 [../tools.json](../tools.json), refreshed from backend MCP source on
 2026-09-01.
 
-Every tool declares an input schema. All tools except
-`move_document_to_review` also declare an `outputSchema` and return
+Every tool declares an input schema, an `outputSchema`, and returns
 `structuredContent` alongside JSON text content for clients that support
-structured tool results; `move_document_to_review` returns JSON text content
-only.
+structured tool results.
 
 Some tools are gated at runtime:
 
@@ -16,7 +14,7 @@ Some tools are gated at runtime:
   members of ProductNow's organization.
 - `curate_knowledge_pack` is advertised only when the
   `knowledge_pack_application` feature flag is enabled for the authenticated
-  user. Clients display it under the title "Curate Context Pack".
+  user. Clients display it under the title "Curate Knowledge Pack".
 
 ## Knowledge Warehouse
 
@@ -63,7 +61,7 @@ result sets are capped by the tool's source limit.
 | `get_document` | Read | Yes | Retrieve document content, version metadata, folder path, and sections. |
 | `create_document` | Write | Yes | Create a ProductNow document and start AI generation. |
 | `list_document_versions` | Read | Yes | List versions for a document, optionally filtered by status. |
-| `move_document_to_review` | Destructive | No | Move a draft version into review and create a fresh draft for further edits. |
+| `move_document_to_review` | Destructive | Yes | Move a draft version into review and create a fresh draft for further edits. |
 | `get_document_chat` | Read | Yes | Fetch document draft chat history and edit mode. |
 | `post_document_chat_message` | Write | Yes | Send a message to the document draft agent. |
 | `switch_document_chat_edit_mode` | Destructive | Yes | Switch a document agent between ask-before-edit and automatic edit modes. |
