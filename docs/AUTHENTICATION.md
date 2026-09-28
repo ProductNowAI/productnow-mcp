@@ -51,7 +51,7 @@ workspace and resource authorization checks.
 For example:
 
 - A user can only read documents they can view in ProductNow.
-- Knowledge warehouse search only returns evidence from documents the user can
+- Company brain search only returns evidence from documents the user can
   access.
 - Comment replies require comment access to the document.
 - Folder and document creation happens inside the user's organization.

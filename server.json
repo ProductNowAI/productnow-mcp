@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "description": "Your team's knowledge warehouse — the cross-vendor storage layer that joins your tools into one living knowledge layer, available wherever you, your team, and all your agents work.",
+  "description": "Your team's company brain — the cross-vendor storage layer that joins your tools into one shared context layer, available wherever you, your team, and all your agents work.",
   "name": "ai.productnow/productnow",
   "remotes": [
     {
@@ -9,6 +9,6 @@
     }
   ],
   "title": "ProductNow",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "websiteUrl": "https://app.productnow.ai"
 }

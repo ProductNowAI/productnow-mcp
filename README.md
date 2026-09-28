@@ -2,11 +2,11 @@
 
 [![Status](https://status.productnow.ai/badge/v2?variant=outline)](https://status.productnow.ai/)
 
-**Your team's knowledge warehouse.**
+**Your team's company brain.**
 
 ProductNow is the cross-vendor storage layer that joins your tools into one
-living knowledge layer that AI can actually use. This hosted Model Context
-Protocol (MCP) server makes that knowledge layer available wherever you and your
+shared context layer that AI can actually use. This hosted Model Context
+Protocol (MCP) server makes that context layer available wherever you and your
 team already work — through MCP clients that authenticate with OAuth and operate
 as the signed-in ProductNow user.
 
@@ -25,7 +25,7 @@ MCP server implementation.
 | --- | --- |
 | Name | `ai.productnow/productnow` |
 | Title | ProductNow |
-| Version | `1.0.0` |
+| Version | `1.1.0` |
 | Transport | Streamable HTTP |
 | Endpoint | `https://api.productnow-prod.com/mcp` |
 | Authentication | OAuth 2.0 via Auth0 |
@@ -35,28 +35,37 @@ MCP server implementation.
 
 ## What It Does
 
-ProductNow connects the tools where knowledge already lives and turns that
-signal into structured, queryable knowledge — the living picture of your
-organization. Through MCP, people and AI agents can search that knowledge
-warehouse, curate shareable knowledge packs, and collaborate on documents from
+ProductNow connects the tools where context already lives and turns that
+signal into structured, queryable context — the living picture of your
+organization. Through MCP, people and AI agents can search that company
+brain, curate shareable knowledge packs, and collaborate on documents from
 the clients they already use.
 
 The MCP server exposes ProductNow workspace operations to compatible AI clients:
 
-- Search the knowledge warehouse for grounded, citeable evidence excerpts.
-- Narrow searches by folder, document creator, or last-edited date range, or
-  search ProductNow product help specifically.
-- Fetch, create, and iterate on ProductNow documents via draft chat.
-- Move drafts into review and participate in comment threads.
-- Browse and create folders; import prototypes and allocate media upload slots.
+- `search` the company brain for grounded, citeable evidence excerpts —
+  narrowed by folder, document creator, or last-edited date range, scoped to
+  ProductNow product help, or switched to folder-name search.
+- `fetch` a document (full text, sections, and comment threads) and
+  `fetch_folder` to browse the warehouse root, a folder, or a folder tree.
+- `remember` a fact, decision, or note and let ProductNow file it in the right
+  document and folder in the background.
+- Create documents with AI generation, `edit_document` through the document's
+  editing agent, poll `get_status`, and `update_document_status` to snapshot,
+  review, or publish.
+- Organize with `create_folder`, `move`, `rename`, and `archive`.
+- Collaborate with `comment_on_document` and `reply_to_thread`.
+- Allocate media upload slots with `upload_media`.
 - Curate shareable knowledge packs when the feature is enabled for the org.
-- Manage ProductNow help documents when the caller is a ProductNow org member.
+- Create ProductNow help documents when the caller is a ProductNow org member.
 
 See [docs/TOOLS.md](docs/TOOLS.md) and [tools.json](tools.json) for the full
-public tool catalog (21 tools).
+public tool catalog (18 tools), and
+[MCP_AGENT_INSTRUCTIONS.md](MCP_AGENT_INSTRUCTIONS.md) for the server's
+initialization instructions and copy-paste agent guidance.
 
 > **Note:** The tool catalog in this repository was refreshed from the backend
-> MCP source on 2026-09-01. The live server's `tools/list` response remains the
+> MCP source on 2026-09-28. The live server's `tools/list` response remains the
 > runtime source of truth for connected clients. Some tools are gated by
 > organization membership or feature flags and may not appear for every user.
 

@@ -1,13 +1,37 @@
 {
   "$schema": "https://productnow.ai/schemas/mcp-tools-catalog.json",
   "generatedFrom": "ProductNow backend MCP source and tools/list public metadata",
-  "lastReviewed": "2026-09-01",
+  "lastReviewed": "2026-09-28",
   "server": "ai.productnow/productnow",
-  "toolCount": 21,
+  "toolCount": 18,
   "tools": [
     {
+      "category": "organization",
+      "description": "Put documents or folders away, including several at once. Pass ids, a mix of document ids and folder ids. Archiving a folder also archives the contents that user can manage. Archived items leave listings and search; nothing is deleted. Not move, and not a content edit — use edit_document to change content. Ids that are not a document or folder here come back in unresolvedIds. Ids the user cannot archive come back in permissionDeniedIds; the rest are still archived.",
+      "destructiveHint": true,
+      "idempotentHint": true,
+      "openWorldHint": false,
+      "readOnlyHint": false,
+      "hasOutputSchema": true,
+      "name": "archive",
+      "returnsStructuredContent": true,
+      "title": "Archive"
+    },
+    {
+      "category": "comments",
+      "description": "Leave feedback on a document that is in review. Not an edit — use edit_document to change the document, and reply_to_thread to answer an existing comment. Pass documentId; this comments on the current review version and says so when there is none. Posted as the user's personal agent.",
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "openWorldHint": false,
+      "readOnlyHint": false,
+      "hasOutputSchema": true,
+      "name": "comment_on_document",
+      "returnsStructuredContent": true,
+      "title": "Comment On Document"
+    },
+    {
       "category": "documents",
-      "description": "Create a new ProductNow document and immediately begin AI generation. Use `prompt` to specify the full document outline, including numbered sections, their titles, and their content. Use `context` for any additional supporting background — e.g., code snippets, meeting notes, etc. If the user references a file by name (e.g., 'the plan in swirling-sleeping-eclipse.md'), read that file first and pass its contents as `context`. Pass `templateVersionId` when the caller already has a template version to use.",
+      "description": "Create a NEW ProductNow document and generate its content with AI. Use this to persist knowledge the user wants remembered or shared across sessions and teammates — decisions, specs, RFCs, plans, meeting outcomes. Search with search first so you don't duplicate an existing document; to change an existing document use edit_document instead. File the document in an existing folder. Search results include each document's folderId; pass the folderId of the closest related document. If search does not show a fit, fetch_folder the root and walk folders until you have a folderId. Leave folderId off only when the user explicitly asked for the warehouse root. If no folder fits, call create_folder under the closest existing folder and pass that new folderId. Content is generated from `prompt` (the full outline: numbered sections, their titles, and what each should say) and `context` (verbatim source material — notes, code, or a file the user named; read the file first and pass its contents). Generation paraphrases: if exact wording must survive, put it in `context` and say so in `prompt`. Pass `templateId` only when you already have one. Returns the documentId and URL; generation continues after the call returns.",
       "destructiveHint": false,
       "idempotentHint": false,
       "openWorldHint": false,
@@ -18,20 +42,8 @@
       "title": "Create Document"
     },
     {
-      "category": "comments",
-      "description": "Leave a comment on a document that is in review status. The comment is posted as the user's personal agent. Only works on review-status document versions. Use list_document_versions to find the correct documentVersionId first.",
-      "destructiveHint": false,
-      "idempotentHint": false,
-      "openWorldHint": false,
-      "readOnlyHint": false,
-      "hasOutputSchema": true,
-      "name": "create_document_comment",
-      "returnsStructuredContent": true,
-      "title": "Create Document Comment"
-    },
-    {
       "category": "folders",
-      "description": "Create a new folder in ProductNow. Optionally nest it inside a parent folder. Returns the new folder's ID and name.",
+      "description": "Create a NEW folder only when no existing folder fits. Search with search and resultType folders first so you don't duplicate a folder; if that is not enough, fetch_folder the root and walk until you find the closest related folder. Nest under that folder by passing its id as parentFolderId. Omit parentFolderId only when the user explicitly asked for a root-level folder. Returns the new folder's id and name.",
       "destructiveHint": false,
       "idempotentHint": false,
       "openWorldHint": false,
@@ -69,79 +81,55 @@
     },
     {
       "category": "documents",
-      "description": "Retrieve the full content of a ProductNow document by its ID, optionally targeting a specific version via `documentVersionId`. Returns the document name, version ID and status, folder location, and all section content. Use `search_knowledge_warehouse` first to find the document ID.",
-      "destructiveHint": false,
-      "idempotentHint": true,
-      "openWorldHint": false,
-      "readOnlyHint": true,
-      "hasOutputSchema": true,
-      "name": "get_document",
-      "returnsStructuredContent": true,
-      "title": "Get Document"
-    },
-    {
-      "category": "documents",
-      "description": "Fetch the current chat messages and edit mode for a document's AI draft chat. Returns the conversation history and whether the agent is in 'ask_before_edit' or 'edit_automatically' mode.",
-      "destructiveHint": false,
-      "idempotentHint": true,
-      "openWorldHint": false,
-      "readOnlyHint": true,
-      "hasOutputSchema": true,
-      "name": "get_document_chat",
-      "returnsStructuredContent": true,
-      "title": "Get Document Chat"
-    },
-    {
-      "category": "feedback",
-      "description": "Retrieve all feedback submitted on the latest review version of a document, returned as CSV. Columns: ID, Title, Description, Feedback, Feedback Type, Created On. Use search_knowledge_warehouse to find the document ID.",
-      "destructiveHint": false,
-      "idempotentHint": true,
-      "openWorldHint": false,
-      "readOnlyHint": true,
-      "hasOutputSchema": true,
-      "name": "get_document_feedback",
-      "returnsStructuredContent": true,
-      "title": "Get Document Feedback"
-    },
-    {
-      "category": "comments",
-      "description": "Fetch all comment threads on a specific document version. Returns thread IDs, statuses, quoted text, and creation timestamps. Use get_thread_messages to read the messages within a specific thread.",
-      "destructiveHint": false,
-      "idempotentHint": true,
-      "openWorldHint": false,
-      "readOnlyHint": true,
-      "hasOutputSchema": true,
-      "name": "get_document_threads",
-      "returnsStructuredContent": true,
-      "title": "Get Document Threads"
-    },
-    {
-      "category": "comments",
-      "description": "Fetch all messages in a specific comment thread. Returns message IDs, content, author names, timestamps, and whether each message was posted by an AI agent. Use get_document_threads to find thread IDs first.",
-      "destructiveHint": false,
-      "idempotentHint": true,
-      "openWorldHint": false,
-      "readOnlyHint": true,
-      "hasOutputSchema": true,
-      "name": "get_thread_messages",
-      "returnsStructuredContent": true,
-      "title": "Get Thread Messages"
-    },
-    {
-      "category": "media",
-      "description": "Import a prototype from a published URL or from inline HTML/JSX/TSX file content. When sourceType is \"url\", provide a published prototype URL from an allowlisted platform (.lovable.app, .replit.app, .repl.co, .figma.site, .vusercontent.net, .vercel.app, .bolt.host, .created.app, .canva.site, .hostingersite.com). When sourceType is \"html\", \"jsx\", or \"tsx\", provide the raw file content as the source. Returns the hosted S3 URL and an iframe HTML snippet. Use this to convert a prototype into a resolved HTML file — the returned URL can be embedded in a prototype element.",
-      "destructiveHint": false,
+      "description": "Edit an existing ProductNow document. This is the only tool that changes a document's content. It does not apply your edit directly: it hands `message` to the document's own editing agent, which reads the document and makes the change. Write `message` as instructions to that agent, not as the new document text. Name the section, say exactly what to add, replace, or remove, and quote text verbatim when the wording must be preserved. Include everything the agent needs, since it cannot see this conversation and will not ask follow-up questions. Returns before the edit finishes; poll get_status until status is idle (it stays running while any edit you sent is queued or in progress), then read the document to confirm the result. Do not use create_document — that creates a new document. Do not use rename — that only changes a name. Do not use reply_to_thread — that only adds discussion and never changes content.",
+      "destructiveHint": true,
       "idempotentHint": false,
-      "openWorldHint": true,
+      "openWorldHint": false,
       "readOnlyHint": false,
       "hasOutputSchema": true,
-      "name": "import_prototype",
+      "name": "edit_document",
       "returnsStructuredContent": true,
-      "title": "Import Prototype"
+      "title": "Edit Document"
     },
     {
       "category": "documents",
-      "description": "List all versions of a document, optionally filtered by status ('draft', 'review', or 'published'). Returns version IDs, version numbers, statuses, and creation timestamps. Useful for locating a specific review or published version before fetching threads or commenting.",
+      "description": "Read one document you already have an id for. Pass documentId. The result includes the document's id, title, url, and full text, plus its sections, comment threads, and each comment's id. When the document is filed in a folder, the result includes that folder's folderId and folderName. Omit documentVersionId to read the latest draft; pass one to read that version and its comments. Version ids come from list_document_versions. Not a search — use search for a question or a topic. Not a folder listing — use fetch_folder to list a folder or the warehouse root.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false,
+      "readOnlyHint": true,
+      "hasOutputSchema": true,
+      "name": "fetch",
+      "returnsStructuredContent": true,
+      "title": "Fetch"
+    },
+    {
+      "category": "folders",
+      "description": "List a folder you already have an id for, or the warehouse root. Pass folderId to list that folder's name, an optional parentFolderId to fetch and go up, and its direct contents. Each child folder and document includes its id, name, updatedAt, createdBy, and isPrivate. Each folder also includes contentCount, its direct documents plus subfolders, and subfolderCount, its direct child folders. Each document also includes its status: DRAFT, REVIEW, or PUBLISHED. A child folder also includes parentFolderId when it is nested, including a shared folder that shows up in the root listing but lives somewhere else; parentFolderId is omitted for a true top-level folder. Pass deep true with a folderId to return that folder and every nested folder as a tree, up to 15 levels, with each folder's documents inside it. deep is rejected for the warehouse root. Omit folderId to list the root one level: the top-level folders plus shared folders this user can see, not the whole warehouse and not other people's private folders. Not a search — use search to find a folder by name. Not a document read — use fetch to read a document.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false,
+      "readOnlyHint": true,
+      "hasOutputSchema": true,
+      "name": "fetch_folder",
+      "returnsStructuredContent": true,
+      "title": "Fetch Folder"
+    },
+    {
+      "category": "documents",
+      "description": "After edit_document or create_document, check whether the document is still being edited or the edits have finished. Pass documentId. Returns running or idle, and a short note of what the draft agent last did. Use it to poll: after sending one or more edits to the same document, call get_status until status is idle, then fetch the document to confirm the result. Edits queue behind each other, so idle means every edit sent so far has finished, not just the latest one. running means at least one edit is still queued or in progress. Not the chat transcript, and not a way to edit — use edit_document to change the document.",
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false,
+      "readOnlyHint": true,
+      "hasOutputSchema": true,
+      "name": "get_status",
+      "returnsStructuredContent": true,
+      "title": "Get Status"
+    },
+    {
+      "category": "documents",
+      "description": "List every version of a document when the user asks what changed, or you need an older version before calling fetch. Pass documentId. Returns each version's id, version number, status, and when it was created, newest first. Pass a returned documentVersionId to fetch with the documentId to read that version and its comments. Omit it and fetch reads the latest draft.",
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false,
@@ -152,57 +140,44 @@
       "title": "List Document Versions"
     },
     {
-      "category": "folders",
-      "description": "List folders and documents accessible to the current user, optionally filtered to a specific parent folder. Omit parentFolderId to list root-level contents. Use this to navigate the folder hierarchy and enumerate documents before creating documents or folders.",
-      "destructiveHint": false,
-      "idempotentHint": true,
+      "category": "organization",
+      "description": "Move documents or folders into another folder, including several at once. Pass ids, a mix of document ids and folder ids, plus one parentFolderId. Omit parentFolderId to file everything at the root. Does not change document content — use edit_document for that. Moves every id it can. Ids the user cannot move come back in permissionDeniedIds. A folder moved into itself or into one of its descendants comes back in refusedIds and stays where it is. Ids that are not a document or folder here come back in unresolvedIds. The rest are still moved.",
+      "destructiveHint": true,
+      "idempotentHint": false,
       "openWorldHint": false,
-      "readOnlyHint": true,
+      "readOnlyHint": false,
       "hasOutputSchema": true,
-      "name": "list_folders",
+      "name": "move",
       "returnsStructuredContent": true,
-      "title": "List Folders"
+      "title": "Move"
     },
     {
-      "category": "help",
-      "description": "List ProductNow help documents accessible to the calling user. Optionally filter by category. Use get_document to read the full content of a specific help document.",
-      "destructiveHint": false,
-      "idempotentHint": true,
+      "category": "knowledge",
+      "description": "Store one piece of information in ProductNow when the user says 'remember this', 'save this', or 'note that…' about their company, product, customers, or team. Pass the fact as `content`; ProductNow decides where it belongs — it searches the warehouse, edits the existing document that covers the topic, or creates a new one in the right folder. Do not search, fetch, or pick a folder first; that is what this tool does. Returns success immediately; the write happens in the background. Treat success as saved and tell the user it is remembered. Do not poll. Use edit_document or create_document instead only when the user already named the exact document or outlined a whole new document.",
+      "destructiveHint": true,
+      "idempotentHint": false,
       "openWorldHint": false,
-      "readOnlyHint": true,
+      "readOnlyHint": false,
       "hasOutputSchema": true,
-      "name": "list_help_documents",
+      "name": "remember",
       "returnsStructuredContent": true,
-      "title": "List Help Documents",
-      "visibility": "productnow_org_only"
+      "title": "Remember"
     },
     {
-      "category": "documents",
-      "description": "Move a ProductNow document's current version into REVIEW status. A fresh DRAFT version is created automatically to receive subsequent edits. Only DRAFT versions are moved; any other status (REVIEW, PUBLISHED, SNAPSHOT, ...) is a no-op — the response's `moved` flag and `previousStatus` report what happened. Targets the document's current version unless `documentVersionId` is provided.",
+      "category": "organization",
+      "description": "Change a document or folder's name. Pass one id — a document id or a folder id — and name. Changes the name only. Does not change document content; that is edit_document. One item per call, because each item gets its own name.",
       "destructiveHint": true,
       "idempotentHint": true,
       "openWorldHint": false,
       "readOnlyHint": false,
       "hasOutputSchema": true,
-      "name": "move_document_to_review",
+      "name": "rename",
       "returnsStructuredContent": true,
-      "title": "Move Document To Review"
-    },
-    {
-      "category": "documents",
-      "description": "Post a message to a document's AI draft chat to request edits or ask questions about the document. The message is sent to the draft agent which can modify the document's content, and works best when you target a specific document section to update. Use this to request changes to a document via natural language. Use the 'switch_document_chat_edit_mode' tool to set the edit mode of the chat to 'edit_automatically' to avoid requiring approval for your edits in the ProductNow UI.",
-      "destructiveHint": false,
-      "idempotentHint": false,
-      "openWorldHint": false,
-      "readOnlyHint": false,
-      "hasOutputSchema": true,
-      "name": "post_document_chat_message",
-      "returnsStructuredContent": true,
-      "title": "Post Document Chat Message"
+      "title": "Rename"
     },
     {
       "category": "comments",
-      "description": "Reply to an existing comment thread on a document as the user's personal agent. Requires COMMENT permission on the document. Use get_document_threads to find thread IDs.",
+      "description": "Reply to an existing comment thread on a document, posted as the user's personal agent. Not an edit — use edit_document to change the document's content. Pass threadId from a document fetch.",
       "destructiveHint": false,
       "idempotentHint": false,
       "openWorldHint": false,
@@ -213,40 +188,28 @@
       "title": "Reply To Thread"
     },
     {
-      "category": "folders",
-      "description": "Find folders by name using fuzzy matching, ordered by relevance. Use this to resolve a folder name (e.g. \"Salesforce\") to its folderId before calling search_knowledge_warehouse with `destinationFolderId` to restrict a search to that folder and its subfolders.",
-      "destructiveHint": false,
-      "idempotentHint": true,
-      "openWorldHint": false,
-      "readOnlyHint": true,
-      "hasOutputSchema": true,
-      "name": "search_folders",
-      "returnsStructuredContent": true,
-      "title": "Search Folders"
-    },
-    {
       "category": "knowledge",
-      "description": "Search ProductNow documents and return answer-ready excerpts for factual questions. Pass query whenever the user names a topic, including when filters are also present. If the user asks only which documents match creator/date filters and names no topic, omit query to list documents by latest content edit; listing sources contain metadata but no excerpts. creatorNames matches document creators, not editors or contributors; its entries combine with OR, while creator and date filters combine with AND. Search workspace documents by default; use product_help only for questions about how ProductNow works. For a folder-scoped workspace search, resolve its id with search_folders and pass destinationFolderId; it is ignored for product_help. Topic-search results are relevance-filtered; all result sets are capped. Answer from the excerpts when possible, cite the documents you use, read a source document with `get_document` only when its excerpts are genuinely insufficient, and state uncertainty when evidence is weak or conflicting.",
+      "description": "Search the company's shared context — its intranet of documents, decisions, meeting notes, and synced systems — and return excerpts relevant to the user's question, with citations. Every source carries the document's id, title, and url; pass the id to fetch for the full text. Call this FIRST whenever the user asks about their company, product, customers, team, or anything that would live on the enterprise intranet, before answering from general knowledge, this conversation, or client-side memory. Covers ProductNow documents (PRDs, specs, RFCs, decisions) plus content synced from whichever sources the workspace has connected, e.g. GitHub, Jira, Linear, Salesforce, ServiceNow, Zendesk, Slack, Teams, Confluence, Notion, Google Drive, and meeting notes. Not for reading a known document in full (fetch) or listing a folder (fetch_folder). To find a folder by name, pass resultType folders. Pass query whenever the user names a topic, including when filters are also present. If the user asks only which documents match creator/date filters and names no topic, omit query to list documents by latest content edit; listing sources contain metadata but no excerpts. creatorNames matches document creators, not editors or contributors; its entries combine with OR, while creator and date filters combine with AND. Search workspace documents by default; use product_help only for questions about how ProductNow works. Pass folderId to limit workspace search to that folder and every folder nested under it; no results come from outside it. Omit folderId to search the whole workspace. Resolve the id with fetch_folder first. Ignored when searchScope is product_help. Pass resultType folders to search folder names instead of documents. Omit resultType to search documents. Folder results are name matches and include each folder's id, name, updatedAt, createdBy, isPrivate, parentFolderId when nested, and folderPath (the parent path) when it has a parent. They have no excerpts. A query is required. creatorNames and date filters apply to documents only. product_help cannot search folders. Topic-search results are relevance-filtered; all result sets are capped. Each source includes the document's folderId and folderPath when it is filed in a folder, and omits both when the document is at the warehouse root. Answer from the excerpts when possible, cite the documents you use, read a source document with `fetch` only when its excerpts are genuinely insufficient, and state uncertainty when evidence is weak or conflicting.",
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false,
       "readOnlyHint": true,
       "hasOutputSchema": true,
-      "name": "search_knowledge_warehouse",
+      "name": "search",
       "returnsStructuredContent": true,
-      "title": "Search Knowledge Warehouse"
+      "title": "Search"
     },
     {
       "category": "documents",
-      "description": "Switch the edit mode of a document's AI draft chat. 'ask_before_edit' means the agent will ask for confirmation before making changes. 'edit_automatically' means the agent will apply edits directly without asking. Set to 'edit_automatically' to avoid requiring approval for your edits in the ProductNow UI.",
+      "description": "Change a document's lifecycle when the user wants a snapshot, a review, or to publish. Pass documentId and status as an action verb — snapshot, review, or publish — not a version status. snapshot saves a read-only copy of the current draft, review opens that draft for comments, and publish makes it the published version. Each one leaves a fresh draft for later edits. Returns previousStatus and status as version statuses such as DRAFT, SNAPSHOT, REVIEW, or PUBLISHED, the same values list_document_versions filters on. Not move, which files documents and folders into a folder, and not a way to check whether an edit is still running.",
       "destructiveHint": true,
-      "idempotentHint": true,
+      "idempotentHint": false,
       "openWorldHint": false,
       "readOnlyHint": false,
       "hasOutputSchema": true,
-      "name": "switch_document_chat_edit_mode",
+      "name": "update_document_status",
       "returnsStructuredContent": true,
-      "title": "Switch Document Chat Edit Mode"
+      "title": "Update Document Status"
     },
     {
       "category": "media",
@@ -261,5 +224,5 @@
       "title": "Upload Media"
     }
   ],
-  "version": "1.0.0"
+  "version": "1.1.0"
 }
