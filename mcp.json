@@ -17,16 +17,16 @@
     "tools": true
   },
   "categories": [
-    "knowledge-warehouse",
-    "knowledge-layer",
+    "company-brain",
+    "context-layer",
     "documents",
     "collaboration",
     "ai-agents",
     "help-docs",
     "media"
   ],
-  "description": "Your team's knowledge warehouse — the cross-vendor storage layer that joins your tools into one living knowledge layer, available wherever you, your team, and all your agents work.",
-  "longDescription": "ProductNow is the cross-vendor storage layer that joins your tools into one living knowledge layer AI can actually use. It connects to the tools where knowledge already lives — code, customer calls, CRM data, support tickets, project history — and automatically transforms them into structured, queryable knowledge that becomes the living picture of your organization. Through this hosted MCP server, people and AI agents get grounded answers and can search, curate, and collaborate on that knowledge layer from the clients they already use.",
+  "description": "Your team's company brain — the cross-vendor storage layer that joins your tools into one shared context layer, available wherever you, your team, and all your agents work.",
+  "longDescription": "ProductNow is the cross-vendor storage layer that joins your tools into one shared context layer AI can actually use. It connects to the tools where context already lives — code, customer calls, CRM data, support tickets, project history — and automatically transforms them into structured, queryable context that becomes the living picture of your organization. Through this hosted MCP server, people and AI agents get grounded answers and can search, curate, and collaborate on that context layer from the clients they already use.",
   "maintainers": [
     {
       "email": "support@productnow.ai"
@@ -45,5 +45,5 @@
     "termsOfService": "https://app.productnow.ai/public/doc/zqwd-nnqa-uflp",
     "website": "https://productnow.ai"
   },
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

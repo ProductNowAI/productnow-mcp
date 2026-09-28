@@ -52,22 +52,30 @@ Scope: mcp:use
 After authentication, call a read-only tool first:
 
 ```text
-search_knowledge_warehouse
+search
 ```
 
 with a simple query such as `"what is this workspace about?"`, or call
-`list_folders` to verify workspace access. That confirms the client can
-authenticate and that ProductNow can resolve the user's organization.
+`fetch_folder` with no arguments to list the warehouse root. That confirms the
+client can authenticate and that ProductNow can resolve the user's
+organization.
 
 ## Write Tool Safety
 
 Several tools can create or mutate ProductNow resources. Clients should ask the
 user for confirmation before executing write or destructive tools, especially:
 
+- `archive`
 - `create_document`
 - `create_help_document`
-- `import_prototype`
-- `move_document_to_review`
-- `post_document_chat_message`
-- `switch_document_chat_edit_mode`
+- `edit_document`
+- `move`
+- `remember`
+- `rename`
+- `update_document_status`
 - `upload_media`
+
+`remember`, `create_document`, and `edit_document` return before their writes
+finish. `remember` runs entirely in the background and should not be polled;
+for the other two, agents should poll `get_status` until `idle` and then
+`fetch` to verify the result.
