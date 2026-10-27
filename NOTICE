@@ -1,0 +1,54 @@
+ProductNow MCP Repository Licensing Notice
+
+Copyright (c) 2026 ProductNow. All rights reserved except as expressly
+provided below.
+
+1. Licensed repository materials
+
+Except for the Excluded Materials identified below, the documentation and
+machine-readable metadata in this repository are licensed under the Creative
+Commons Attribution 4.0 International license (CC BY 4.0), the full text of
+which appears in LICENSE.
+
+SPDX-License-Identifier: CC-BY-4.0
+
+The Licensed Materials include the Markdown documentation, JSON marketplace
+metadata, public tool descriptions, and client-configuration examples in this
+repository.
+
+2. Excluded Materials
+
+The CC BY 4.0 license does not apply to:
+
+- the ProductNow name, logos, icons, trade names, trademarks, service marks,
+  trade dress, or other brand features, including files under assets/;
+- the hosted ProductNow service or MCP server, its implementation, source code,
+  object code, APIs as operated, models, algorithms, infrastructure, or other
+  technology not contained in this repository;
+- ProductNow accounts, credentials, customer or workspace data, MCP responses,
+  service outputs, or other content accessed through the service; or
+- third-party material, which remains subject to its own terms.
+
+Except for the limited permission below, all rights in the Excluded Materials
+are reserved. Patent and trademark rights are not licensed.
+
+3. Limited permission for marketplace identification
+
+MCP directories, marketplaces, indexes, and compatible clients may copy,
+cache, and display the ProductNow logo and icon files from this repository,
+without modification, solely to identify and link to or configure the official
+ProductNow MCP service. This permission does not authorize use as part of
+another product or service, modification of the brand assets, or any suggestion
+of sponsorship, affiliation, or endorsement by ProductNow.
+
+4. Hosted service
+
+This repository and its license do not grant any right to access or use the
+hosted ProductNow service or MCP server. Access and use require authorization
+and are governed by the applicable ProductNow terms, available at:
+
+https://app.productnow.ai/public/doc/zqwd-nnqa-uflp
+
+Published endpoint and configuration metadata describe how compatible clients
+may connect; they are not a promise of availability or a grant of service,
+software, data, or intellectual-property rights.

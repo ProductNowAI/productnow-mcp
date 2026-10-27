@@ -35,6 +35,8 @@ code.
 | `docs/CLIENT_CONFIGURATION.md` | Example client setup. |
 | `docs/PRIVACY_AND_PERMISSIONS.md` | Permission and data-handling guidance. |
 | `docs/TOOLS.md` | Human-readable tool catalog. |
+| `LICENSE` | CC BY 4.0 terms for repository documentation and metadata. |
+| `NOTICE` | License scope, exclusions, brand permission, and hosted-service boundary. |
 
 ## Official MCP Registry
 
