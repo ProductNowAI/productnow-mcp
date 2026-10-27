@@ -136,3 +136,14 @@ See [docs/PRIVACY_AND_PERMISSIONS.md](docs/PRIVACY_AND_PERMISSIONS.md).
 ## Support
 
 For MCP listing or integration questions, contact `support@productnow.ai`.
+
+## License
+
+The documentation and machine-readable metadata in this repository are
+licensed under [CC BY 4.0](LICENSE). This license does not cover ProductNow's
+hosted service or MCP server, backend implementation, data, outputs, or
+trademark rights. ProductNow brand assets are subject only to the limited
+unmodified marketplace-identification permission in [NOTICE](NOTICE).
+
+Access to and use of the hosted ProductNow service are governed separately by
+the [ProductNow Terms of Service](https://app.productnow.ai/public/doc/zqwd-nnqa-uflp).
